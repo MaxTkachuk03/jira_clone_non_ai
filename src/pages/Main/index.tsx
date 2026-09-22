@@ -5,7 +5,13 @@ import { TASK_TYPES } from "../../constants";
 
 const MainPage = () => {
   return (
-    <Box sx={{ display: "flex", direction: "column" }}>
+    <Box
+      sx={{
+        display: "flex",
+        direction: "column",
+        background: (theme) => theme.palette.background.default,
+      }}
+    >
       {TASK_TYPES.map((taskType) => {
         return <CustomColumn key={taskType.id} taskType={taskType.label} />;
       })}
