@@ -24,7 +24,7 @@ const CustomColumn = ({ taskType }: CustomColumnProps) => {
         borderRadius: "16px",
         border: "1px solid #000",
         padding: "10px",
-        background: theme.palette.common.white,
+        background: theme.palette.kanban.columnBg,
       }}
     >
       <Box
@@ -42,7 +42,7 @@ const CustomColumn = ({ taskType }: CustomColumnProps) => {
           sx={{
             display: "flex",
             padding: "0 4px", // Прибираємо вертикальний відступ (0 зверху/знизу), залишаємо тільки по боках
-            bgcolor: theme.palette.common.black,
+            bgcolor: theme.palette.info.light,
             minWidth: TASK_NUMBER_WIDTH,
             height: TASK_NUMBER_HEIGHT,
             alignItems: "center",
