@@ -1,8 +1,14 @@
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import MainPage from "./pages/Main";
+import { AppTheme } from "./theme/AppTheme";
+import { router } from "./config/router";
 
 function App() {
-  return <MainPage />;
+  return (
+    <AppTheme>
+      <RouterProvider router={router} />
+    </AppTheme>
+  );
 }
 
 export default App;

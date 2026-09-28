@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import CustomHeader from "../../components/CustomHeader";
-import type React from "react";
+import { Outlet } from "react-router-dom";
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+const MainLayout = () => {
   return (
     <Box
       sx={{
@@ -14,9 +14,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, bgcolor: "background.default" }}
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          bgcolor: (theme) => theme.palette.background.default,
+        }}
       >
-        {children}
+        <Outlet />
       </Box>
     </Box>
   );

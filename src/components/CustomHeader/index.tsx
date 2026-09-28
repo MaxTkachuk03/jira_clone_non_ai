@@ -1,8 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ProfileIcon from "@mui/icons-material/Person2Rounded";
-
-const DEFAULT_SIZE = 32;
+import { CustomIconButton } from "../CustomIconButton";
 
 const CustomHeader = () => {
   const theme = useTheme();
@@ -17,11 +16,14 @@ const CustomHeader = () => {
         background: theme.palette.header.background,
         justifyContent: "flex-end",
         gap: "16px",
-        border: `1px solid ${theme.palette.header.border}`
+        border: `1px solid ${theme.palette.header.border}`,
       }}
     >
-      <SettingsIcon sx={{ width: DEFAULT_SIZE, height: DEFAULT_SIZE }} />
-      <ProfileIcon sx={{ width: DEFAULT_SIZE, height: DEFAULT_SIZE }} />
+      <SettingsIcon />
+      <ProfileIcon />
+      <CustomIconButton path="/settings">
+        <SettingsIcon />
+      </CustomIconButton>
     </Box>
   );
 };
