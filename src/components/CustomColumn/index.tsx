@@ -1,5 +1,5 @@
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
 const TASK_NUMBER_WIDTH = 32;
@@ -7,14 +7,23 @@ const TASK_NUMBER_HEIGHT = 24;
 
 interface CustomColumnProps {
   taskType: string;
+  children: React.ReactNode;
+  innerRef: (a?: HTMLElement | null) => void;
 }
 
-const CustomColumn = ({ taskType }: CustomColumnProps) => {
+const CustomColumn = ({
+  taskType,
+  children,
+  innerRef,
+  ...droppableProps
+}: CustomColumnProps) => {
   const [numberOfTodoTasks, setNumberOfTodoTasks] = useState(0);
   const theme = useTheme();
 
   return (
     <Box
+      ref={innerRef}
+      {...droppableProps}
       sx={{
         margin: "24px",
         display: "flex",
@@ -25,6 +34,7 @@ const CustomColumn = ({ taskType }: CustomColumnProps) => {
         border: "1px solid #000",
         padding: "10px",
         background: theme.palette.kanban.columnBg,
+        gap: 2,
       }}
     >
       <Box
@@ -62,7 +72,16 @@ const CustomColumn = ({ taskType }: CustomColumnProps) => {
           </Typography>
         </Box>
       </Box>
-      <Box sx={{ display: "flex", gap: "8px", flexGrow: 1 }}></Box>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "8px",
+          flexGrow: 1,
+          flexDirection: "column",
+        }}
+      >
+        {children}
+      </Box>
       <IconButton
         color="info"
         size="small"
@@ -73,7 +92,6 @@ const CustomColumn = ({ taskType }: CustomColumnProps) => {
           justifyContent: "flex-start",
           padding: 0,
           borderRadius: "8px",
-          
         }}
       >
         <AddIcon sx={{ width: "24px", height: "24px" }} />

@@ -155,8 +155,11 @@ export const createAppTheme = (mainColor: string) =>
       MuiCard: {
         styleOverrides: {
           root: {
+            padding: "16px 8px",
+            height: "150px",
+            width: "100%",
             borderRadius: "12px",
-            border: "1px solid #E2E8F0",
+            border: "1px solid #050A12",
             boxShadow: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
             transition: "box-shadow 0.2s ease, border-color 0.2s ease",
             "&:hover": {
