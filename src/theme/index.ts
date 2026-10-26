@@ -6,6 +6,8 @@ declare module "@mui/material/styles" {
     kanban: {
       columnBg: string;
       taskBg: string;
+      columnDragOver: string;
+      taskDragging: string;
     };
     header: {
       background: string;
@@ -17,6 +19,8 @@ declare module "@mui/material/styles" {
     kanban?: {
       columnBg: string;
       taskBg: string;
+       columnDragOver: string;
+      taskDragging: string;
     };
     header?: {
       background: string;
@@ -55,7 +59,9 @@ export const createAppTheme = (mainColor: string) =>
       },
       kanban: {
         columnBg: "#F1F3F9", // Сучасний сіро-синій відтінок (Slate 100) для колонок
-        taskBg: "#FFFFFF",
+        taskBg: "#FFFFFF",       // Звичайний фоновий колір колонки
+        columnDragOver: "#8AB2E7",  // Трохи темніший/насиченіший при dragOver        // Звичайний фон картки
+        taskDragging: "#20AEFB",
       },
       background: {
         paper: "#6FE6FB", // Нейтральний фон всього додатка
@@ -155,7 +161,7 @@ export const createAppTheme = (mainColor: string) =>
       MuiCard: {
         styleOverrides: {
           root: {
-            padding: "16px 8px",
+            padding: "4px 10px 8px",
             height: "150px",
             width: "100%",
             borderRadius: "12px",

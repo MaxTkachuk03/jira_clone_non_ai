@@ -8,16 +8,19 @@ const TASK_NUMBER_HEIGHT = 24;
 interface CustomColumnProps {
   taskType: string;
   children: React.ReactNode;
+  numberOfTodoTasks: number;
   innerRef: (a?: HTMLElement | null) => void;
+  isDraggingOver: boolean;
 }
 
 const CustomColumn = ({
   taskType,
   children,
   innerRef,
+  numberOfTodoTasks,
+  isDraggingOver,
   ...droppableProps
 }: CustomColumnProps) => {
-  const [numberOfTodoTasks, setNumberOfTodoTasks] = useState(0);
   const theme = useTheme();
 
   return (
@@ -33,7 +36,9 @@ const CustomColumn = ({
         borderRadius: "16px",
         border: "1px solid #000",
         padding: "10px",
-        background: theme.palette.kanban.columnBg,
+        background: isDraggingOver
+          ? theme.palette.kanban.columnBg
+          : theme.palette.kanban.columnDragOver,
         gap: 2,
       }}
     >
