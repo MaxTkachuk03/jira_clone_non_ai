@@ -5,6 +5,7 @@ import type { CommonTypes, TaskType } from "../types/models";
 
 export const useTaskBoard = () => {
   const [tasksList, setTasksList] = useState<TaskType[]>(tasks);
+  const [columnsList, setColumnsList] = useState<CommonTypes[]>(columns);
   // const result = {
   //   draggableId: "task-1",  Це звичайний рядок — унікальний ідентифікатор (id) картки, яку користувач перетягнув
   //   type: "TYPE",
@@ -26,7 +27,7 @@ export const useTaskBoard = () => {
   };
 
   const onDragEnd = (result: DropResult) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source, draggableId, type } = result;
 
     if (!destination) return;
 
@@ -36,13 +37,24 @@ export const useTaskBoard = () => {
     )
       return;
 
+    if (type === "column") {
+      setColumnsList((columnsList) => {
+        const newColumnsList = [...columnsList];
+        const [movedColumn] = newColumnsList.splice(source.index, 1);
+        newColumnsList.splice(destination.index, 0, movedColumn);
+
+        return newColumnsList;
+      });
+      return;
+    }
+
     setTasksList((taskList) => {
       const newTaskList = [...taskList];
 
       const dragIndex = newTaskList.findIndex(
         (task) => task.id === draggableId,
       );
-      if (dragIndex === -1) return;
+      if (dragIndex === -1) return taskList;
 
       const [movedTask] = newTaskList.splice(dragIndex, 1);
 
@@ -55,7 +67,7 @@ export const useTaskBoard = () => {
       }
 
       const columnList = newTaskList.filter((task) =>
-        onTaskFilter(task, source.droppableId),
+        onTaskFilter(task, destination.droppableId),
       );
 
       // console.log(`destination.index: ${destination.index}`);
@@ -93,5 +105,6 @@ export const useTaskBoard = () => {
     onTaskFilter,
     onDragEnd,
     tasksList,
+    columnsList,
   };
 };

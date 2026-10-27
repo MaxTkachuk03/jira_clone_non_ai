@@ -11,6 +11,7 @@ interface CustomColumnProps {
   numberOfTodoTasks: number;
   innerRef: (a?: HTMLElement | null) => void;
   isDraggingOver: boolean;
+  droppableProps?: Record<string, any>;
 }
 
 const CustomColumn = ({
@@ -19,7 +20,7 @@ const CustomColumn = ({
   innerRef,
   numberOfTodoTasks,
   isDraggingOver,
-  ...droppableProps
+  droppableProps,
 }: CustomColumnProps) => {
   const theme = useTheme();
 

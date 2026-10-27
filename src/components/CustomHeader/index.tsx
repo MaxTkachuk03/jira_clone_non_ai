@@ -19,7 +19,6 @@ const CustomHeader = () => {
         border: `1px solid ${theme.palette.header.border}`,
       }}
     >
-      <SettingsIcon />
       <ProfileIcon />
       <CustomIconButton path="/settings">
         <SettingsIcon />
